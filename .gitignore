@@ -6,7 +6,6 @@ cat << 'EOF' >> .gitignore
 .env
 .env.local
 .env.staging
-.env.production
 
 # ========================================
 # IDE & Editor Files
@@ -32,7 +31,6 @@ cat << 'EOF' >> .gitignore
 # ========================================
 /vendor
 .env.backup
-.env.production
 .phpunit.result.cache
 Homestead.json
 Homestead.yaml
@@ -41,4 +39,14 @@ npm-debug.log
 yarn-error.log
 /.fleet
 /.vscode
+# التحقق من أن .env* مستبعدة
+grep -q ".env" .gitignore || cat << 'EOF' >> .gitignore
+
+# ========================================
+# Environment Files (Sensitive - Never Commit)
+# ========================================
+.env
+.env.local
+.env.staging
+
 EOF
